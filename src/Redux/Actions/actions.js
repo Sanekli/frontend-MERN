@@ -26,6 +26,7 @@ export const SignIn = (userData, history) => async (dispatch) => {
             type: 'SIGNIN_SUCCESS',
             payload: SignInUsers.data
         });
+        console.log(SignInUsers.data);
         dispatch(CurrentUser(SignInUsers.data.token));
         setTimeout(() => {
             window.location.replace(window.location.protocol + '//' + window.location.host);

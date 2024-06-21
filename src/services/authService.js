@@ -12,6 +12,7 @@ export const login = async (credentials) => {
     localStorage.setItem('authToken', token);
 
     // Return the token or other necessary data
+    console.log(response.data);
     return response.data;
   } catch (error) {
     console.error('Login error:', error);
