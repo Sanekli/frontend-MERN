@@ -19,7 +19,7 @@ function Login() {
         await dispatch(signInAction({ email, password }, navigate));
       } catch (err) {
         setError(err.response.data.msg);
-        alert(err.response.data.msg); // Display alert with error message
+        alert(err.response.data.msg); 
       }
     }
   };

@@ -1,19 +1,31 @@
 import React, { useEffect, useState } from "react";
 import { Nav, Navbar, Container } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
+import { CurrentUser } from "../../Redux/Actions/actions";
+import { LOGOUT } from "../../Redux/Consts/action-type";
 
 function NavBar() {
   const navigate = useNavigate();
-  const [user, setUser] = useState(null);
+  // const [user, setUser] = useState(null);
+  // const token = useSelector(state => state.Reducers.SignInUsers.token)
+  // const user = useSelector(state => state.Reducers.GetUser.user)
+  const token = localStorage.getItem("token")
+  const user = JSON.parse(localStorage.getItem("current_user")) || {}
+  console.log(user.role);
+  const dispatch = useDispatch()
 
-  useEffect(() => {
-    const storedUser = JSON.parse(localStorage.getItem("current_user"));
-    setUser(storedUser);
-  }, []);
+  // useEffect(() => {
+  //   const storedUser = JSON.parse(localStorage.getItem("current_user"));
+  //   setUser(storedUser);
+  // }, [user]);
 
   const logout = () => {
     localStorage.clear();
-    setUser(null);
+    dispatch({
+      type: LOGOUT
+    })
+    // setUser(null);
     navigate("/");
   };
 
@@ -32,12 +44,12 @@ function NavBar() {
             <Nav.Link as={Link} to="/Product">
               Our service
             </Nav.Link>
-            {user?.role === "admin" && (
+            {user.role === "admin" && (
               <Nav.Link as={Link} to="/listNewReservation">
                 Reservations
               </Nav.Link>
             )}
-            {user ? (
+            {token ? (
               <Nav.Link onClick={logout}>Logout</Nav.Link>
             ) : (
               <Nav.Link as={Link} to="/Login">

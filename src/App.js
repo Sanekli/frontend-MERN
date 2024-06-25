@@ -9,7 +9,15 @@ import Details from './Components/ourHome/Details'
 import Products from './Components/ourHome/Product';
 import Login from './Components/Register/SignIn';
 import ReservationList from './Components/Reservation/ReservationList';
+import { CurrentUser } from './Redux/Actions/actions';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 function App() {
+  const dispatch = useDispatch();
+  const token = localStorage.getItem("token")
+  useEffect(() => {
+    dispatch(CurrentUser(token))
+  }, []);
   return (
     <div className="App">
       <NavBar/>

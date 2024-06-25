@@ -5,12 +5,12 @@ import axios from 'axios'
 
 export const SignUp = (userData,History) => async (dispatch) => {
 try {
-    const SignUpUsers = await axios.post('http://localhost:5000/SignUp',userData)
+    const SignUpUsers = await axios.post('https://backend-mern-qam4.onrender.com/api/auth/SignUp',userData)
     dispatch(
 {        type : SIGNUP ,
         payload : SignUpUsers ,
 })
-localStorage.setItem('token', SignUpUsers.data.token)
+// localStorage.setItem('token', SignUpUsers.data.token)
 History('/Login')
 } catch (error) {
     console.log(error)  
@@ -21,16 +21,17 @@ History('/Login')
 export const SignIn = (userData, history) => async (dispatch) => {
     axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
     try {
-        const SignInUsers = await axios.post('http://localhost:5000/SignIn', userData);
+        const SignInUsers = await axios.post('https://backend-mern-qam4.onrender.com/api/auth/SignIn', userData);
         dispatch({
-            type: 'SIGNIN_SUCCESS',
+            type: SIGNIN,
             payload: SignInUsers.data
         });
-        console.log(SignInUsers.data);
+        console.log(SignInUsers);
         dispatch(CurrentUser(SignInUsers.data.token));
-        setTimeout(() => {
-            window.location.replace(window.location.protocol + '//' + window.location.host);
-        }, 500);
+        // setTimeout(() => {
+        //     window.location.replace(window.location.protocol + '//' + window.location.host);
+        // }, 500);
+        localStorage.setItem('token',SignInUsers.data.token)
         history('/');
     } catch (error) {
         console.error('Login error:', error.response.data.msg); 
@@ -44,14 +45,14 @@ export const CurrentUser = (token) => async (dispatch) => {
         Authorization: token 
                 }}
     try {
-        const GetUser = await axios.get('http://localhost:5000/current',config)
+        const GetUser = await axios.get('https://backend-mern-qam4.onrender.com/api/auth/current',config)
         dispatch(
             {            
                 type : CURRENT ,
                 payload : GetUser.data
             }
-            
         )
+        console.log(GetUser.data);
         localStorage.setItem('current_user',JSON.stringify(GetUser.data.user))
     } catch (error) {
         console.log(error)
@@ -61,7 +62,7 @@ export const CurrentUser = (token) => async (dispatch) => {
 export const Product = (newProducts) => async (dispatch) => {
     
     try {
-        const AddingProduct = await axios.post('http://localhost:5000/addingNewProduct',newProducts)
+        const AddingProduct = await axios.post('https://backend-mern-qam4.onrender.com/api/product/addingNewProduct',newProducts)
         dispatch (
             { 
                 type : PRODUCT ,
@@ -76,7 +77,7 @@ export const Product = (newProducts) => async (dispatch) => {
 
 export const getProducts = () => async(dispatch)=>{
     try {
-        const res = await axios.get('http://localhost:5000/listNewProduct')
+        const res = await axios.get('https://backend-mern-qam4.onrender.com/api/product/listNewProduct')
 dispatch(
     {            
         type : GET_PRODUCT ,
@@ -91,7 +92,7 @@ console.log(error)
 
 export const getOneProduct = (id) => async (dispatch) => {
     try {
-        const productById = await axios.get(`http://localhost:5000/listNewProduct/${id}`)
+        const productById = await axios.get(`https://backend-mern-qam4.onrender.com/api/product/listNewProduct/${id}`)
         dispatch (
             { 
                 type : 'getOneProduct' ,
@@ -107,7 +108,7 @@ export const getOneProduct = (id) => async (dispatch) => {
 
 export const deleteProduct = (id) => async (dispatch) => {
     try {
-        const productById = await axios.delete(`http://localhost:5000/deletePosts/${id}`)
+        const productById = await axios.delete(`https://backend-mern-qam4.onrender.com/api/product/deletePosts/${id}`)
         dispatch (
             { 
                 type : 'deleteProduct' ,
@@ -120,23 +121,24 @@ export const deleteProduct = (id) => async (dispatch) => {
     }
 
 }
-export const Reservation = (newReservation) => async (dispatch) => {
+export const Reservation = (newReservation, navigate) => async (dispatch) => {
     
     try {
-        const AddingReservation = await axios.post('http://localhost:5000/addingNewReservation',newReservation)
+        const AddingReservation = await axios.post('https://backend-mern-qam4.onrender.com/api/product/addingNewReservation',newReservation)
         dispatch (
             { 
                 type : RESERVATION ,
                 payload : AddingReservation.data
             }
         )
+        navigate("/")
     } catch (error) {
         console.log(error)
     }
 }
 export const getReservation = () => async(dispatch)=>{
     try {
-        const res = await axios.get('http://localhost:5000/listNewReservation')
+        const res = await axios.get('https://backend-mern-qam4.onrender.com/api/product/listNewReservation')
 dispatch(
     {            
         type : GET_RESERVATION ,

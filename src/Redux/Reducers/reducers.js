@@ -1,4 +1,4 @@
-import {SIGNUP,SIGNIN,CURRENT,PRODUCT, RESERVATION,GET_PRODUCT,GET_RESERVATION} from "../Consts/action-type"
+import {SIGNUP,SIGNIN,CURRENT,PRODUCT, RESERVATION,GET_PRODUCT,GET_RESERVATION, LOGOUT} from "../Consts/action-type"
 
 
 const initalState = {
@@ -54,6 +54,17 @@ const UserReducer = (state = initalState, action) => {
                 ...state ,
                 getOneProduct : [action.payload]
             }
+            case LOGOUT:
+                return {
+                    SignUpUsers : {},
+                    SignInUsers : {} ,
+                    GetUser : {} ,
+                    newProduct : {} ,
+                    newReservation : {} ,
+                    getReservation : [] ,
+                    getProduct: [],
+                    getOneProduct : []
+                }
         default: return state
         
     }
