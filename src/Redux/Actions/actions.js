@@ -1,4 +1,4 @@
-import {SIGNUP,SIGNIN,CURRENT,PRODUCT, GET_PRODUCT, RESERVATION, GET_RESERVATION} from "../Consts/action-type"
+import {SIGNUP,SIGNIN,CURRENT,PRODUCT, GET_PRODUCT, RESERVATION, GET_RESERVATION, DELETE_RESERVATION} from "../Consts/action-type"
 import axios from 'axios'
 
 
@@ -150,3 +150,17 @@ dispatch(
 console.log(error)
 }
 }
+
+export const deleteReservation = (id) => async (dispatch) => {
+    try {
+        await axios.delete(`https://backend-mern-qam4.onrender.com/api/product/deleteReservation/${id}`);
+        dispatch({
+            type: DELETE_RESERVATION,
+            payload: id,
+        });
+        alert('Reservation deleted successfully');
+    } catch (error) {
+        console.error('Error deleting reservation:', error.response?.data?.msg || error.message);
+        alert('Failed to delete reservation');
+    }
+};
