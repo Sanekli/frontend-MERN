@@ -19,7 +19,7 @@ let userIsAdmin = JSON.parse(localStorage.getItem('current_user'))
   return (
     
 <div >
-    {userIsAdmin?.role==='admin' ? <Admin userId={product._id}/> : ''}
+{userIsAdmin?.role==='admin' ? <Admin userId={product._id}/> : ''}
 <section className="dark" >
   {productList?.map((product) => 
   <div  className="container py-4" key={product._id}>
@@ -49,8 +49,6 @@ let userIsAdmin = JSON.parse(localStorage.getItem('current_user'))
         </div>
       </article>
       </Link>
-      
-      
       </div>
   )}
   </section>
