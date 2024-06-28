@@ -54,9 +54,10 @@ let userIsAdmin = JSON.parse(localStorage.getItem('current_user'))
         </div>
       </article>
       </Link>
-      <Button variant="danger" onClick={() => dispatch(deleteProduct(product._id))}>
+      {userIsAdmin?.role==='admin' ? <Button variant="danger" onClick={() => dispatch(deleteProduct(product._id))}>
         delete
-      </Button>
+      </Button> : ''}
+      
       </div>
   )}
   </section>
