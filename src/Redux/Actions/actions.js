@@ -116,7 +116,7 @@ export const deleteProduct = (id) => async (dispatch) => {
                 payload : productById.data.oneProduct
             }
         )
-        
+        dispatch(getProducts())
     } catch (error) {
         console.log (error)
     }
