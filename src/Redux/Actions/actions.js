@@ -158,6 +158,7 @@ export const deleteReservation = (id) => async (dispatch) => {
             type: DELETE_RESERVATION,
             payload: id,
         });
+        dispatch(getReservation())
         alert('Reservation deleted successfully');
     } catch (error) {
         console.error('Error deleting reservation:', error.response?.data?.msg || error.message);
