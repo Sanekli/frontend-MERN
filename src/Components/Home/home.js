@@ -12,7 +12,7 @@ function home() {
       </div>
 
       <div className="parag1">
-        <h1>welcome to our IMMO SANEKLI</h1>
+        <h1>welcome to IMMO SANEKLI</h1>
         <p>you can rent your beautiful apartment in hammamet </p>
       </div>
 
