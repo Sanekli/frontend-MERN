@@ -17,7 +17,7 @@ function Example({ userId }) {
   const AddingNewProduct = () => {
     dispatch(Product({ title, description, url_images: urlImages }));
     handleClose();
-    window.location.reload();
+    //window.location.reload();
   };
   const deletPost = () => {
     dispatch(deleteProduct(userId));
