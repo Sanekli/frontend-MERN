@@ -22,7 +22,7 @@ function Example({ userId }) {
   const deletPost = () => {
     dispatch(deleteProduct(userId));
     handleClose();
-    window.location.reload();
+    //window.location.reload();
   };
   return (
     <div>
