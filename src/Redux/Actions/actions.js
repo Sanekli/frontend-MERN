@@ -69,6 +69,7 @@ export const Product = (newProducts) => async (dispatch) => {
                 payload : AddingProduct.data
             }
         )
+        dispatch(getProducts())
     } catch (error) {
         console.log(error)
     }
