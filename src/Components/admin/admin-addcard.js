@@ -21,7 +21,7 @@ function Example() {
   };
   
   return (
-    <div>
+    <div className="container">
       <Button className="ButtonBlue" variant="primary" onClick={handleShow}>
         Add new product
       </Button>
