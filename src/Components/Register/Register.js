@@ -83,7 +83,7 @@ function Register() {
   </label>
 </div>
 <div className="form-field col-lg-12">
-<input onClick ={Submit}  className="submit-btn"  defaultValue="Submit" />
+<input onClick ={Submit}  className="submit-btn"  defaultValue="Submit" type='submit' />
 </div>
 </form>
 </section>
