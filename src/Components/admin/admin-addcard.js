@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Button, Modal, InputGroup, FormControl } from "react-bootstrap";
 import { useDispatch } from "react-redux";
-import { Product, deleteProduct } from "../../Redux/Actions/actions";
+import { Product } from "../../Redux/Actions/actions";
 
-function Example({ userId }) {
+function Example() {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -19,11 +19,7 @@ function Example({ userId }) {
     handleClose();
     //window.location.reload();
   };
-  const deletPost = () => {
-    dispatch(deleteProduct(userId));
-    handleClose();
-    //window.location.reload();
-  };
+  
   return (
     <div>
       <Button className="ButtonBlue" variant="primary" onClick={handleShow}>
@@ -66,9 +62,6 @@ function Example({ userId }) {
           </InputGroup>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="warning" onClick={() => deletPost()}>
-            delete
-          </Button>
           <Button variant="primary" onClick={() => AddingNewProduct()}>
             Save Changes
           </Button>
