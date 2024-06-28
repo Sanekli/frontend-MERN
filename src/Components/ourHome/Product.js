@@ -50,7 +50,7 @@ let userIsAdmin = JSON.parse(localStorage.getItem('current_user'))
         </div>
       </article>
       </Link>
-      <Button variant="warning" onClick={() => dispatch(deleteProduct(product._id))}>
+      <Button variant="danger" onClick={() => dispatch(deleteProduct(product._id))}>
         delete
       </Button>
       </div>
