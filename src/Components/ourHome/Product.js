@@ -2,8 +2,9 @@ import React , {useEffect} from 'react'
 import './Product.css'
 import {Link} from 'react-router-dom'
 import {useDispatch,useSelector } from 'react-redux'
-import {getProducts} from '../../Redux/Actions/actions'
+import {getProducts, deleteProduct} from '../../Redux/Actions/actions'
 import Admin from '../admin/admin-addcard'
+import { Button } from "react-bootstrap";
 
 function Products() {
 
@@ -49,7 +50,7 @@ let userIsAdmin = JSON.parse(localStorage.getItem('current_user'))
         </div>
       </article>
       </Link>
-      <Button variant="warning" onClick={() => dispatch(deletePost(product._id))}>
+      <Button variant="warning" onClick={() => dispatch(deleteProduct(product._id))}>
         delete
       </Button>
       </div>
