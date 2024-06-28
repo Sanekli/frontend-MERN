@@ -49,6 +49,9 @@ let userIsAdmin = JSON.parse(localStorage.getItem('current_user'))
         </div>
       </article>
       </Link>
+      <Button variant="warning" onClick={() => dispatch(deletePost(product._id)}>
+        delete
+      </Button>
       </div>
   )}
   </section>
