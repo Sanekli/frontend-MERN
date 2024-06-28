@@ -2,7 +2,7 @@ import React , {useEffect} from 'react'
 import './Product.css'
 import {Link} from 'react-router-dom'
 import {useDispatch,useSelector } from 'react-redux'
-import {getProducts, deleteProduct} from '../../Redux/Actions/actions'
+import {getProducts, deleteProduct, CurrentUser} from '../../Redux/Actions/actions'
 import Admin from '../admin/admin-addcard'
 import { Button } from "react-bootstrap";
 
@@ -10,6 +10,10 @@ function Products() {
 
   const dispatch = useDispatch()
 
+  const token = localStorage.getItem("token")
+  useEffect(() => {
+    dispatch(CurrentUser(token))
+  }, []);
  useEffect(() => {
     dispatch(getProducts())
   } ,[])
