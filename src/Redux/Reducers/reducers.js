@@ -68,7 +68,7 @@ const UserReducer = (state = initalState, action) => {
                 case DELETE_RESERVATION:
                     return {
                         ...state,
-                        reservations: state.reservations.filter(reservation => reservation._id !== action.payload)
+                        getReservation: state.getReservation.filter(reservation => reservation._id !== action.payload)
                     };
         default: return state
         
