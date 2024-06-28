@@ -4,7 +4,11 @@ function home() {
   return (
     <div>
       <div>
-        <img className="Image1" src={Image3} alt="ph" />
+        <img className="Image1" src={Image3} alt="ph" style={{ 
+            width: '100%', 
+            height: '100vh', 
+
+          }}  />
       </div>
 
       <div className="parag1">
