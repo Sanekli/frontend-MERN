@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Col, Form, Row } from "react-bootstrap";
+import { Button, Col, Form, Row, Container } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { Reservation } from "../../Redux/Actions/actions";
 import "./reservation.css";
@@ -15,8 +15,8 @@ function ReservationForm() {
   const [date, setDate] = useState("");
   const [choose, setChoose] = useState("");
   const navigate = useNavigate();
+
   const Submit = (e) => {
-    // e.preventDefault()
     dispatch(
       Reservation(
         { email, lastName, phoneNumber, address, name, date, choose },
@@ -24,62 +24,63 @@ function ReservationForm() {
       )
     );
   };
+
   return (
     <div className="reservation">
-      <h1>Please Check Your Reservation</h1>
-      <Form>
-        <Row className="mb-3">
-          <Form.Group as={Col} controlId="formGridEmail">
-            <Form.Label>Name</Form.Label>
+      <Container>
+        <h1>Please Check Your Reservation</h1>
+        <Form>
+          <Row className="mb-3">
+            <Form.Group as={Col} controlId="formGridEmail">
+              <Form.Label>Name</Form.Label>
+              <Form.Control
+                placeholder="Enter name"
+                onChange={(e) => setName(e.target.value)}
+              />
+            </Form.Group>
+
+            <Form.Group as={Col} controlId="formGridPassword">
+              <Form.Label>Last Name</Form.Label>
+              <Form.Control
+                placeholder="Last Name"
+                onChange={(e) => setLastName(e.target.value)}
+              />
+            </Form.Group>
+          </Row>
+          <Form.Group className="mb-3" controlId="formGridEmail">
+            <Form.Label>Email</Form.Label>
             <Form.Control
-              placeholder="Enter name"
-              onChange={(e) => setName(e.target.value)}
+              type="email"
+              placeholder="Enter email"
+              onChange={(e) => setEmail(e.target.value)}
             />
           </Form.Group>
-
-          <Form.Group as={Col} controlId="formGridPassword">
-            <Form.Label>lastName</Form.Label>
+          <Form.Group className="mb-3" controlId="formGridAddress2">
+            <Form.Label>Phone Number</Form.Label>
             <Form.Control
-              placeholder="lastName"
-              onChange={(e) => setLastName(e.target.value)}
+              placeholder=".. ... ..."
+              onChange={(e) => setPhoneNumber(e.target.value)}
             />
           </Form.Group>
-        </Row>
-        <Form.Group as={Col} controlId="formGridEmail">
-          <Form.Label>Email</Form.Label>
-          <Form.Control
-            type="email"
-            placeholder="Enter email"
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="formGridAddress2">
-          <Form.Label>phoneNumber</Form.Label>
-          <Form.Control
-            placeholder=".. ... ..."
-            onChange={(e) => setPhoneNumber(e.target.value)}
-          />
-        </Form.Group>
-        <Form.Group as={Col} controlId="formGridCity">
-          <Form.Label>Address</Form.Label>
-          <Form.Control onChange={(e) => setAddress(e.target.value)} />
-        </Form.Group>
-        <Row className="mb-3">
-          <Form.Group as={Col} controlId="formGridState">
-            <Form.Label>Choose Your Appartement</Form.Label>
-            <Form.Select
-              defaultValue="Choose..."
-              onChange={(e) => setChoose(e.target.value)}
-            >
-              <option></option>
-              <option>Dar Sabri</option>
-              <option>Dar Rim</option>
-              <option>Dar Selma</option>
-            </Form.Select>
+          <Form.Group className="mb-3" controlId="formGridCity">
+            <Form.Label>Address</Form.Label>
+            <Form.Control onChange={(e) => setAddress(e.target.value)} />
           </Form.Group>
+          <Row className="mb-3">
+            <Form.Group as={Col} controlId="formGridState">
+              <Form.Label>Choose Your Appartement</Form.Label>
+              <Form.Select
+                defaultValue="Choose..."
+                onChange={(e) => setChoose(e.target.value)}
+              >
+                <option></option>
+                <option>Dar Sabri</option>
+                <option>Dar Rim</option>
+                <option>Dar Selma</option>
+              </Form.Select>
+            </Form.Group>
 
-          <Form.Group as={Col} controlId="formGridZip">
-            <Form.Group controlId="dob">
+            <Form.Group as={Col} controlId="formGridZip">
               <Form.Label>Select Date</Form.Label>
               <Form.Control
                 type="date"
@@ -88,18 +89,16 @@ function ReservationForm() {
                 onChange={(e) => setDate(e.target.value)}
               />
             </Form.Group>
-          </Form.Group>
-        </Row>
-        <Button
-          onClick={() => Submit()}
-          variant="primary"
-          // type="submit"
-          className="submit-btn"
-          defaultValue="Submit"
-        >
-          Submit
-        </Button>
-      </Form>
+          </Row>
+          <Button
+            onClick={() => Submit()}
+            variant="primary"
+            className="submit-btn"
+          >
+            Submit
+          </Button>
+        </Form>
+      </Container>
     </div>
   );
 }
